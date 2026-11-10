@@ -19,12 +19,16 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
+<!-- Address of the deployed agent (Cloudflare Worker). Leave empty until it is deployed. -->
+<meta name="agent-url" content="">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"Person","name":"Tal Mikel","jobTitle":"Software Developer","url":"https://talmaikel.github.io/","email":"mailto:talmaikel123@gmail.com","address":{"@type":"PostalAddress","addressLocality":"Tel Aviv","addressCountry":"IL"},"alumniOf":"Reichman University","sameAs":["https://linkedin.com/in/tal-mikel-software-developer","https://github.com/talmaikel"]}
 </script>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
+<div class="progress" aria-hidden="true"><span></span></div>
+<div class="spotlight" aria-hidden="true"></div>
 
 <header class="site-header">
   <div class="wrap header-inner">
@@ -32,7 +36,9 @@
     <nav aria-label="Main" class="nav">
       <a href="#work">/work</a>
       <a href="#about">/about</a>
+      <a href="#agent">/agent</a>
       <a href="#contact">/contact</a>
+      <button type="button" class="kbd-btn" data-open-palette aria-label="Open command menu"><kbd>⌘K</kbd></button>
       <a class="btn-cv" href="assets/Tal_Mikel_CV.pdf" download>cv.pdf ↓</a>
     </nav>
   </div>
@@ -42,7 +48,7 @@
 
 <section id="top" class="wrap hero">
   <div class="hero-text">
-    <p class="mono accent reveal">// Software Developer · AI Agents · Tel Aviv</p>
+    <p class="mono accent reveal"><span class="typed" data-type="// Software Developer · AI Agents · Tel Aviv">// Software Developer · AI Agents · Tel Aviv</span><span class="caret" aria-hidden="true"></span></p>
     <h1 class="reveal">CS student shipping real software with AI, <span class="dim">and looking for a team to grow with.</span></h1>
     <p class="lead reveal">Studying Computer Science at Reichman University (GPA 92, Dean's List). I built skills for a company's AI agents that are still in use, and I'm the technical lead on a live AI-based PropTech platform.</p>
     <div class="actions reveal">
@@ -65,19 +71,19 @@
 <section class="stack-band" aria-label="From NAND gates to AI agents">
   <div class="wrap stack mono">
     <span class="stack-label">full stack, literally:</span>
-    <span>NAND gates</span><span class="arrow" aria-hidden="true">→</span>
-    <span>HDL</span><span class="arrow" aria-hidden="true">→</span>
-    <span>Assembler</span><span class="arrow" aria-hidden="true">→</span>
-    <span>VM</span><span class="arrow" aria-hidden="true">→</span>
-    <span>Python · TS · Java</span><span class="arrow" aria-hidden="true">→</span>
-    <span>Next.js · PostgreSQL</span><span class="arrow" aria-hidden="true">→</span>
-    <span class="accent">AI agents</span>
+    <span class="tok">NAND gates</span><span class="arrow" aria-hidden="true">→</span>
+    <span class="tok">HDL</span><span class="arrow" aria-hidden="true">→</span>
+    <span class="tok">Assembler</span><span class="arrow" aria-hidden="true">→</span>
+    <span class="tok">VM</span><span class="arrow" aria-hidden="true">→</span>
+    <span class="tok">Python · TS · Java</span><span class="arrow" aria-hidden="true">→</span>
+    <span class="tok">Next.js · PostgreSQL</span><span class="arrow" aria-hidden="true">→</span>
+    <span class="tok accent">AI agents</span>
   </div>
 </section>
 
 <section id="work" class="wrap work">
   <div class="section-head">
-    <h2>Selected work</h2>
+    <h2 data-scramble>Selected work</h2>
     <span class="mono muted">03 projects</span>
   </div>
 
@@ -124,6 +130,35 @@
   </article>
 </section>
 
+<section id="agent" class="wrap agent" aria-labelledby="agent-h">
+  <div class="agent-intro">
+    <p class="mono accent">// ask_my_agent</p>
+    <h2 id="agent-h" data-scramble>Ask my agent.</h2>
+    <p class="lead">I build AI agents, so here's one that knows my CV and projects. Ask it what a recruiter would ask.</p>
+    <p class="fineprint mono muted">Answers come only from my CV and project write-ups, powered by Claude. It can make mistakes, so email me to confirm anything important.</p>
+  </div>
+  <div class="terminal reveal">
+    <div class="term-bar mono"><span class="term-dot" aria-hidden="true"></span>tal-agent<span class="muted"> · online</span></div>
+    <div class="term-log" id="agent-log" role="log" aria-live="polite" aria-label="Conversation with Tal's agent">
+      <div class="msg bot"><span class="who mono">agent</span><p>Hi! I'm Tal's agent. Ask me about Tal's projects, experience, skills or availability.</p></div>
+    </div>
+    <div class="chips" id="agent-chips">
+      <button type="button" class="chip">What did Tal build at Koladin?</button>
+      <button type="button" class="chip">Is Tal a fit for an AI engineer role?</button>
+      <button type="button" class="chip">How does Shakdan work?</button>
+      <button type="button" class="chip">How can I contact Tal?</button>
+    </div>
+    <form class="term-form" id="agent-form" autocomplete="off">
+      <label for="agent-input" class="sr-only">Ask a question about Tal</label>
+      <span class="prompt mono" aria-hidden="true">&gt;</span>
+      <input id="agent-input" name="q" type="text" maxlength="600" placeholder="Ask anything about Tal…" required>
+      <button type="submit" class="send" aria-label="Send question">
+        <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg>
+      </button>
+    </form>
+  </div>
+</section>
+
 <section id="about" class="wrap about">
   <div class="about-text">
     <p class="mono accent">// about</p>
@@ -150,7 +185,7 @@
 
 <section id="contact" class="wrap contact">
   <p class="mono accent">// contact</p>
-  <h2 class="reveal">Let's build<br>something.</h2>
+  <h2 class="reveal" data-scramble>Let's build<br>something.</h2>
   <p class="lead">I'm looking for a software developer role, especially work with AI agents, where I can learn from a strong team and contribute from day one.</p>
   <div class="actions">
     <a class="btn btn-primary email" href="mailto:talmaikel123@gmail.com">talmaikel123@gmail.com</a>
@@ -167,19 +202,24 @@
   <span>built with care in tel aviv</span>
 </footer>
 
-<script>
-  // Fade sections in as they scroll into view (skipped if the user prefers reduced motion).
-  (function () {
-    var els = document.querySelectorAll('.reveal');
-    if (!('IntersectionObserver' in window) || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    document.documentElement.classList.add('js-reveal');
-    var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (e) {
-        if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
-      });
-    }, { rootMargin: '0px 0px -8% 0px' });
-    els.forEach(function (el) { io.observe(el); });
-  })();
-</script>
+<a class="fab" href="#agent" aria-label="Ask my agent">
+  <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+  <span class="mono">ask my agent</span>
+</a>
+
+<dialog class="palette" id="palette" aria-label="Command menu">
+  <form method="dialog" class="palette-inner">
+    <div class="palette-search">
+      <span class="mono accent" aria-hidden="true">&gt;</span>
+      <label for="palette-input" class="sr-only">Type a command</label>
+      <input id="palette-input" type="text" placeholder="Type a command…" autocomplete="off">
+      <kbd class="mono">esc</kbd>
+    </div>
+    <ul class="palette-list" id="palette-list" role="listbox" aria-label="Commands"></ul>
+  </form>
+</dialog>
+<div class="toast mono" id="toast" role="status" aria-live="polite"></div>
+
+<script src="main.js" defer></script>
 </body>
 </html>
